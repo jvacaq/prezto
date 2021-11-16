@@ -11,3 +11,87 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+if [ -x /usr/bin/dircolors ]; then
+	eval "`dircolors -b`"
+#	 alias ls='ls --color=auto'
+	#alias dir='dir --color=auto'
+	#alias vdir='vdir --color=auto'
+	alias ls='ls --color=auto --file-type --group-directories-first -b -h'
+	alias ll='ls -l --color=auto --file-type --group-directories-first -b -h'
+	alias grep='grep --color=auto'
+	alias fgrep='fgrep --color=auto'
+	alias egrep='egrep --color=auto'
+fi
+function getRandom(){
+    
+    if [ "$1" -gt 0 ]; then
+        pwd_length=$1
+    else
+        pwd_length=32
+    fi
+
+    #echo "Longitud a usar $pwd_length"
+
+    echo $(LC_ALL=C tr -dc 'A-Za-z0-9!"#$%&'\''()*+,-./:;<=>?@[\]^_`{|}~' </dev/urandom | head -c $pwd_length ; echo)
+}
+
+function getRand(){
+    if [ "$1" -gt 0 ]; then
+        pwd_length=$1
+    else
+        pwd_length=32
+    fi
+
+    #echo "Longitud a usar $pwd_length"
+
+    echo $(head /dev/urandom | tr -dc A-Za-z0-9 | head -c $pwd_length ; echo '')
+}
+
+function getCurrentimeInMilis(){
+    echo $(($(date +%s%N)/1000000))
+}
+
+function killTomcat(){
+    kill `jcmd | grep catalina | grep -v grep|awk '{print $1}'`
+}
+
+function gitlog() {git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit}
+function gitlogall() {git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit}
+
+export NODE_OPTIONS="--max_old_space_size=2048"
+export ANDROID_HOME="/home/advance/Android/Sdk"
+export PATH="$PATH:/opt/mssql-tools/bin"
+export PATH="$PATH:/home/advance/tools/sonar-scanner-4.6.2.2472-linux/bin"
+export PATH="$PATH:/home/advance/tools/fop-2.6/fop"
+export PATH="$PATH:/home/advance/tools/ngrok"
+export PATH=.:$PATH
+
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+autoload -Uz promptinit
+promptinit
+prompt powerlevel10k
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+###-tns-completion-start-###
+if [ -f /home/advance/.tnsrc ]; then 
+    source /home/advance/.tnsrc 
+fi
+###-tns-completion-end-###
