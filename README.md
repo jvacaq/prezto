@@ -18,7 +18,7 @@ version is **4.3.11**.
 02. Clone the repository:
 
     ```console
-    git clone --recursive git@github.com:jvacaq/prezto.git "/home/advance/temp/.zprezto"
+    git clone --recursive git@github.com:jvacaq/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
     ```
 
     <details>
