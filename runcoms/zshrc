@@ -28,6 +28,8 @@ if [ -x /usr/bin/dircolors ]; then
 	alias grep='grep --color=auto'
 	alias fgrep='fgrep --color=auto'
 	alias egrep='egrep --color=auto'
+    alias encrypt='java -jar ~/bin/encrypt-1.0.jar'
+    alias decrypt='java -jar ~/bin/encrypt-1.0.jar -d'
 fi
 function getRandom(){
     
@@ -95,3 +97,7 @@ if [ -f /home/advance/.tnsrc ]; then
     source /home/advance/.tnsrc 
 fi
 ###-tns-completion-end-###
+
+
+# Load Angular CLI autocompletion.
+#source <(ng completion script)
