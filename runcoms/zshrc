@@ -73,6 +73,8 @@ export PATH="$PATH:/opt/mssql-tools/bin"
 export PATH="$PATH:/home/advance/tools/sonar-scanner-4.6.2.2472-linux/bin"
 export PATH="$PATH:/home/advance/tools/fop-2.6/fop"
 export PATH="$PATH:/home/advance/tools/ngrok"
+export PATH="$PATH:$ANDROID_HOME/tools/bin"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
 export PATH=.:$PATH
 
 
@@ -91,12 +93,6 @@ export NVM_DIR="$HOME/.nvm"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-###-tns-completion-start-###
-if [ -f /home/advance/.tnsrc ]; then 
-    source /home/advance/.tnsrc 
-fi
-###-tns-completion-end-###
 
 
 # Load Angular CLI autocompletion.
